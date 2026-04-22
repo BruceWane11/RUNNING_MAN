@@ -37,7 +37,7 @@ A fast-paced, browser-based parkour running game built with HTML5, CSS3, and Jav
 ## 📁 Project Structure
 
 ```
-parkour-runner-game/
+RUNNING_MAN/
 ├── index.html          # Main HTML file
 ├── style.css           # Styles and animations
 ├── game.js             # Game logic and mechanics
@@ -68,7 +68,7 @@ parkour-runner-game/
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/username/parkour-runner-game.git
+   git clone https://github.com/BruceWane11/RUNNING_MAN.git
    ```
 
 2. **Navigate to the project folder**:
@@ -165,4 +165,4 @@ Have questions or suggestions? Feel free to:
 
 ---
 
-**Made with ❤️ by [Your Name]** | **Enjoy the game!** 🎮
+**Made with ❤️ by BruceWane11** | **Enjoy the game!** 🎮

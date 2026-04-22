@@ -56,7 +56,7 @@ restartBtn.addEventListener('click', restartGame);
 startBtn.addEventListener('click', startGame);
 
 // Set GitHub repository link (user can update this)
-githubLink.href = 'https://github.com/username/parkour-runner-game';
+githubLink.href = 'https://github.com/BruceWane11/RUNNING_MAN';
 
 // Handle key presses
 function handleKeyDown(e) {
