@@ -48,6 +48,45 @@ h1 {
     text-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
 }
 
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.language-switcher {
+    display: flex;
+    gap: 10px;
+}
+
+.lang-btn {
+    background: rgba(0, 30, 60, 0.7);
+    color: #a0e7ff;
+    border: 1px solid #00eeff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.lang-btn:hover {
+    background: rgba(0, 238, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.lang-btn.active {
+    background: linear-gradient(90deg, #00eeff, #00ffaa);
+    color: #000;
+    box-shadow: 0 0 10px rgba(0, 238, 255, 0.7);
+}
+
 .subtitle {
     font-size: 1.2rem;
     color: #a0e7ff;

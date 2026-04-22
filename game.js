@@ -12,6 +12,103 @@ const startScreen = document.getElementById('startScreen');
 const restartBtn = document.getElementById('restartBtn');
 const startBtn = document.getElementById('startBtn');
 const githubLink = document.getElementById('github-link');
+const langEnBtn = document.getElementById('lang-en');
+const langZhBtn = document.getElementById('lang-zh');
+
+// Language state
+let currentLang = localStorage.getItem('parkourLanguage') || 'en';
+
+// Translation dictionary
+const translations = {
+    en: {
+        // Header
+        title: "PARKOUR RUNNER",
+        subtitle: "Dodge obstacles, jump over gaps, and survive as long as you can!",
+
+        // Stats
+        score: "Score:",
+        lives: "Lives:",
+        time: "Time:",
+        highScore: "High Score:",
+
+        // Game screens
+        readyToRun: "READY TO RUN?",
+        controlsTitle: "CONTROLS",
+        spaceJump: "SPACE or UP ARROW - Jump",
+        downSlide: "DOWN ARROW - Slide (when available)",
+        pPause: "P - Pause Game",
+        startGame: "START GAME",
+        tip: "Tip: Time your jumps carefully!",
+
+        // Game over
+        gameOver: "GAME OVER",
+        yourScore: "Your score:",
+        newHighScore: "New High Score!",
+        playAgain: "PLAY AGAIN",
+
+        // Controls info
+        jump: "Jump",
+        slide: "Slide",
+        pause: "Pause",
+
+        // Instructions
+        howToPlay: "HOW TO PLAY",
+        instruction1: "Press SPACE or UP ARROW to jump over obstacles",
+        instruction2: "Avoid hitting obstacles or falling into gaps",
+        instruction3: "Each obstacle passed gives you 10 points",
+        instruction4: "Game gets faster as your score increases",
+        instruction5: "You have 3 lives - lose them all and it's game over!",
+
+        // Footer
+        createdBy: "Created with",
+        byClaude: "by Claude Code",
+        viewOnGitHub: "View on GitHub"
+    },
+    zh: {
+        // Header
+        title: "跑酷奔跑者",
+        subtitle: "躲避障碍，跳过缺口，尽可能生存下去！",
+
+        // Stats
+        score: "分数：",
+        lives: "生命：",
+        time: "时间：",
+        highScore: "最高分：",
+
+        // Game screens
+        readyToRun: "准备奔跑？",
+        controlsTitle: "控制说明",
+        spaceJump: "空格键 或 上箭头 - 跳跃",
+        downSlide: "下箭头 - 滑行（可用时）",
+        pPause: "P键 - 暂停游戏",
+        startGame: "开始游戏",
+        tip: "提示：掌握好跳跃时机！",
+
+        // Game over
+        gameOver: "游戏结束",
+        yourScore: "你的分数：",
+        newHighScore: "新的最高分！",
+        playAgain: "再玩一次",
+
+        // Controls info
+        jump: "跳跃",
+        slide: "滑行",
+        pause: "暂停",
+
+        // Instructions
+        howToPlay: "游戏玩法",
+        instruction1: "按 空格键 或 上箭头 跳过障碍",
+        instruction2: "避免撞到障碍物或掉入缺口",
+        instruction3: "每个通过的障碍物得10分",
+        instruction4: "分数越高，游戏速度越快",
+        instruction5: "你有3条命 - 全部失去则游戏结束！",
+
+        // Footer
+        createdBy: "由",
+        byClaude: "Claude Code 创建",
+        viewOnGitHub: "在GitHub上查看"
+    }
+};
 
 // Game state
 let game = {
@@ -54,9 +151,113 @@ document.addEventListener('keydown', handleKeyDown);
 document.addEventListener('keyup', handleKeyUp);
 restartBtn.addEventListener('click', restartGame);
 startBtn.addEventListener('click', startGame);
+langEnBtn.addEventListener('click', () => switchLanguage('en'));
+langZhBtn.addEventListener('click', () => switchLanguage('zh'));
 
 // Set GitHub repository link (user can update this)
 githubLink.href = 'https://github.com/BruceWane11/RUNNING_MAN';
+
+// Language functions
+function switchLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('parkourLanguage', lang);
+    updateLanguage();
+    updateLanguageButtons();
+}
+
+function updateLanguageButtons() {
+    // Remove active class from all buttons
+    langEnBtn.classList.remove('active');
+    langZhBtn.classList.remove('active');
+
+    // Add active class to current language button
+    if (currentLang === 'en') {
+        langEnBtn.classList.add('active');
+    } else {
+        langZhBtn.classList.add('active');
+    }
+}
+
+function updateLanguage() {
+    const t = translations[currentLang];
+
+    // Update header
+    document.querySelector('h1').innerHTML = `<i class="fas fa-running"></i> ${t.title}`;
+    document.querySelector('.subtitle').textContent = t.subtitle;
+
+    // Update stats labels
+    const stats = document.querySelectorAll('.stat-label');
+    if (stats.length >= 4) {
+        stats[0].innerHTML = `${t.score} <span id="score">0</span>`;
+        stats[1].innerHTML = `${t.lives} <span id="lives">3</span>`;
+        stats[2].innerHTML = `${t.time} <span id="time">0</span>s`;
+        stats[3].innerHTML = `${t.highScore} <span id="high-score">0</span>`;
+    }
+
+    // Update start screen
+    const startScreen = document.getElementById('startScreen');
+    if (startScreen) {
+        startScreen.querySelector('h2').innerHTML = `<i class="fas fa-play-circle"></i> ${t.readyToRun}`;
+        startScreen.querySelector('.controls h3').innerHTML = `<i class="fas fa-gamepad"></i> ${t.controlsTitle}`;
+        const controlItems = startScreen.querySelectorAll('.controls p');
+        if (controlItems.length >= 3) {
+            controlItems[0].innerHTML = `<i class="fas fa-space-shuttle"></i> <strong>${t.spaceJump.split(' - ')[0]}</strong> - ${t.spaceJump.split(' - ')[1]}`;
+            controlItems[1].innerHTML = `<i class="fas fa-arrow-down"></i> <strong>${t.downSlide.split(' - ')[0]}</strong> - ${t.downSlide.split(' - ')[1]}`;
+            controlItems[2].innerHTML = `<i class="fas fa-pause"></i> <strong>${t.pPause.split(' - ')[0]}</strong> - ${t.pPause.split(' - ')[1]}`;
+        }
+        startScreen.querySelector('#startBtn').innerHTML = `<i class="fas fa-rocket"></i> ${t.startGame}`;
+        startScreen.querySelector('.hint').textContent = t.tip;
+    }
+
+    // Update game over screen
+    const gameOverScreen = document.getElementById('gameOver');
+    if (gameOverScreen) {
+        gameOverScreen.querySelector('h2').innerHTML = `<i class="fas fa-skull-crossbones"></i> ${t.gameOver}`;
+        gameOverScreen.querySelector('p').innerHTML = `${t.yourScore} <span id="final-score">0</span>`;
+        gameOverScreen.querySelector('#new-high-score').innerHTML = `<i class="fas fa-crown"></i> ${t.newHighScore}`;
+        gameOverScreen.querySelector('#restartBtn').innerHTML = `<i class="fas fa-redo"></i> ${t.playAgain}`;
+    }
+
+    // Update controls info
+    const controlItems = document.querySelectorAll('.control-item span');
+    if (controlItems.length >= 3) {
+        controlItems[0].textContent = t.jump;
+        controlItems[1].textContent = t.slide;
+        controlItems[2].textContent = t.pause;
+    }
+
+    // Update instructions
+    const instructions = document.querySelector('.instructions');
+    if (instructions) {
+        instructions.querySelector('h3').innerHTML = `<i class="fas fa-info-circle"></i> ${t.howToPlay}`;
+        const instructionItems = instructions.querySelectorAll('li');
+        if (instructionItems.length >= 5) {
+            instructionItems[0].innerHTML = t.instruction1;
+            instructionItems[1].innerHTML = t.instruction2;
+            instructionItems[2].innerHTML = t.instruction3;
+            instructionItems[3].innerHTML = t.instruction4;
+            instructionItems[4].innerHTML = t.instruction5;
+        }
+    }
+
+    // Update footer
+    const footer = document.querySelector('footer p');
+    if (footer) {
+        footer.innerHTML = `${t.createdBy} <i class="fas fa-heart"></i> ${t.byClaude} |
+            <a href="https://github.com/BruceWane11/RUNNING_MAN" target="_blank" id="github-link">
+                <i class="fab fa-github"></i> ${t.viewOnGitHub}
+            </a>`;
+    }
+
+    // Update canvas text (if game is running)
+    if (game.running) {
+        // Canvas text will be updated in next draw cycle
+    }
+}
+
+// Initialize language
+updateLanguage();
+updateLanguageButtons();
 
 // Handle key presses
 function handleKeyDown(e) {

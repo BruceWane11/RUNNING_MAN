@@ -11,7 +11,17 @@
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-running"></i> PARKOUR RUNNER</h1>
+            <div class="header-top">
+                <h1><i class="fas fa-running"></i> PARKOUR RUNNER</h1>
+                <div class="language-switcher">
+                    <button id="lang-en" class="lang-btn active" data-lang="en">
+                        <i class="fas fa-globe-americas"></i> EN
+                    </button>
+                    <button id="lang-zh" class="lang-btn" data-lang="zh">
+                        <i class="fas fa-globe-asia"></i> 中文
+                    </button>
+                </div>
+            </div>
             <p class="subtitle">Dodge obstacles, jump over gaps, and survive as long as you can!</p>
         </header>
 
@@ -19,19 +29,19 @@
             <div class="stats-bar">
                 <div class="stat">
                     <i class="fas fa-tachometer-alt"></i>
-                    <span>Score: <span id="score">0</span></span>
+                    <span class="stat-label">Score: <span id="score">0</span></span>
                 </div>
                 <div class="stat">
                     <i class="fas fa-heart"></i>
-                    <span>Lives: <span id="lives">3</span></span>
+                    <span class="stat-label">Lives: <span id="lives">3</span></span>
                 </div>
                 <div class="stat">
                     <i class="fas fa-clock"></i>
-                    <span>Time: <span id="time">0</span>s</span>
+                    <span class="stat-label">Time: <span id="time">0</span>s</span>
                 </div>
                 <div class="stat">
                     <i class="fas fa-trophy"></i>
-                    <span>High Score: <span id="high-score">0</span></span>
+                    <span class="stat-label">High Score: <span id="high-score">0</span></span>
                 </div>
             </div>
 
