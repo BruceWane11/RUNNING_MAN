@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkour Runner Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-running"></i> PARKOUR RUNNER</h1>
+            <p class="subtitle">Dodge obstacles, jump over gaps, and survive as long as you can!</p>
+        </header>
+
+        <div class="game-area">
+            <div class="stats-bar">
+                <div class="stat">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Score: <span id="score">0</span></span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-heart"></i>
+                    <span>Lives: <span id="lives">3</span></span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-clock"></i>
+                    <span>Time: <span id="time">0</span>s</span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-trophy"></i>
+                    <span>High Score: <span id="high-score">0</span></span>
+                </div>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="gameCanvas" width="800" height="400"></canvas>
+                <div class="game-over" id="gameOver">
+                    <h2><i class="fas fa-skull-crossbones"></i> GAME OVER</h2>
+                    <p>Your score: <span id="final-score">0</span></p>
+                    <p id="new-high-score" class="hidden"><i class="fas fa-crown"></i> New High Score!</p>
+                    <button id="restartBtn"><i class="fas fa-redo"></i> PLAY AGAIN</button>
+                </div>
+                <div class="start-screen" id="startScreen">
+                    <h2><i class="fas fa-play-circle"></i> READY TO RUN?</h2>
+                    <div class="controls">
+                        <h3><i class="fas fa-gamepad"></i> CONTROLS</h3>
+                        <p><i class="fas fa-space-shuttle"></i> <strong>SPACE</strong> or <strong>UP ARROW</strong> - Jump</p>
+                        <p><i class="fas fa-arrow-down"></i> <strong>DOWN ARROW</strong> - Slide (when available)</p>
+                        <p><i class="fas fa-pause"></i> <strong>P</strong> - Pause Game</p>
+                    </div>
+                    <button id="startBtn"><i class="fas fa-rocket"></i> START GAME</button>
+                    <p class="hint">Tip: Time your jumps carefully!</p>
+                </div>
+            </div>
+
+            <div class="controls-info">
+                <div class="control-item">
+                    <div class="key"><i class="fas fa-long-arrow-alt-up"></i></div>
+                    <span>Jump</span>
+                </div>
+                <div class="control-item">
+                    <div class="key"><i class="fas fa-long-arrow-alt-down"></i></div>
+                    <span>Slide</span>
+                </div>
+                <div class="control-item">
+                    <div class="key">P</div>
+                    <span>Pause</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> HOW TO PLAY</h3>
+            <ul>
+                <li>Press <strong>SPACE</strong> or <strong>UP ARROW</strong> to jump over obstacles</li>
+                <li>Avoid hitting obstacles or falling into gaps</li>
+                <li>Each obstacle passed gives you 10 points</li>
+                <li>Game gets faster as your score increases</li>
+                <li>You have 3 lives - lose them all and it's game over!</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Created with <i class="fas fa-heart"></i> by Claude Code |
+                <a href="https://github.com/" target="_blank" id="github-link">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <div class="particles" id="particles"></div>
+
+    <script src="game.js"></script>
+</body>
+</html>
